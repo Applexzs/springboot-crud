@@ -2,6 +2,7 @@ package com.applexzs.springboot.app.entities;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "products")
@@ -9,8 +10,16 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty
+    @Size(min = 3, max = 20000)
     private String name;
+
+    @Min(500)
+    @NotNull
     private Integer price;
+
+    @NotBlank
     private String description;
 
 
