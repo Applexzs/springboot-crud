@@ -1,6 +1,7 @@
 package com.applexzs.springboot.app.controllers;
 
 
+import com.applexzs.springboot.app.ProductValidation;
 import com.applexzs.springboot.app.entities.Product;
 import com.applexzs.springboot.app.services.IProductService;
 import jakarta.validation.Valid;
@@ -21,6 +22,9 @@ public class ProductController {
     @Autowired
     private IProductService service;
 
+    //@Autowired
+    //private ProductValidation validation;
+
     @GetMapping
     public List<Product> list() {
         return service.findAll();
@@ -37,6 +41,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> create(@Valid @RequestBody Product product, BindingResult result) {
+        //validation.validate(product, result);
         if (result.hasFieldErrors()) {
             return (ResponseEntity<Product>) validation(result);
         }
@@ -45,6 +50,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Product> update(@Valid @RequestBody Product product, BindingResult result, @PathVariable Long id) {
+        //validation.validate(product, result);
         if (result.hasFieldErrors()) {
             return (ResponseEntity<Product>) validation(result);
         }

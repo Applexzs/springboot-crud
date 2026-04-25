@@ -40,6 +40,8 @@ public class ProductServiceImpl implements IProductService {
         Optional<Product> productOptional = repository.findById(id);
         if (productOptional.isPresent()) {
             Product productDb = productOptional.orElseThrow();
+
+            productDb.setSku(product.getSku());
             productDb.setName(product.getName());
             productDb.setDescription(product.getDescription());
             productDb.setPrice(product.getPrice());
@@ -56,5 +58,11 @@ public class ProductServiceImpl implements IProductService {
             repository.delete(productDb);
         });
         return productOptional;
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public boolean existsBySku(String sku) {
+        return  repository.existsBySku(sku);
     }
 }
