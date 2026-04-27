@@ -1,7 +1,6 @@
 package com.applexzs.springboot.app.controllers;
 
 
-import com.applexzs.springboot.app.entities.Product;
 import com.applexzs.springboot.app.entities.User;
 import com.applexzs.springboot.app.services.IUserService;
 import jakarta.validation.Valid;
@@ -16,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:4200", originPatterns = "*")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -51,4 +51,5 @@ public class UserController {
         });
         return ResponseEntity.badRequest().body(errors);
     }
+
 }
