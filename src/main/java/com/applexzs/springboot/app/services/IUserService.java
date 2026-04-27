@@ -10,5 +10,6 @@ public interface IUserService {
 
     User save(User user);
 
+    boolean existsByUsername(String username);
 
 }
